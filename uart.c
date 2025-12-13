@@ -135,6 +135,10 @@ void uart_disable(void)
     USART0.CTRLB &= ~(USART_TXEN_bm | USART_RXEN_bm);
     USART0.CTRLA &= ~(USART_RXCIE_bm | USART_TXCIE_bm | USART_DREIE_bm);
 
+#if UART_HANDSHAKE == 2
+    UART_HANDSHAKE_PORT.DIRCLR = UART_HANDSHAKE_RTS_PIN | UART_HANDSHAKE_CTS_PIN;
+#endif
+
 #ifdef TWI_PORTMUX
 	#if !defined(__AVR_ATtiny202__) && !defined(__AVR_ATtiny402__)
 
