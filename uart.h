@@ -220,7 +220,11 @@
          *
          * @note Disabled automatically if UART_TXCIE or UART_UDRIE interrupts are enabled.
          */
-        #define UART_RXC_ECHO
+        //#define UART_RXC_ECHO
+
+        #ifdef _DOXYGEN_    // Used for documentation, can be ignored
+            #define UART_RXC_ECHO
+        #endif
     #endif
 
     #ifndef UART_HANDSHAKE
