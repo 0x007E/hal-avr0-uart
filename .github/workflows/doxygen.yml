@@ -35,8 +35,8 @@ jobs:
 
       - name: Prepare files for Doxygen
         run: |
-          mkdir -p ./hal/avr0/common
-          cp -r ./hal-common/. ./hal/avr0/common/
+          mkdir -p ./hal/common
+          cp -r ./hal-common/. ./hal/common/
           mkdir -p ./hal/avr0/uart
           cp ./uart.c ./hal/avr0/uart/
           cp ./uart.h ./hal/avr0/uart/

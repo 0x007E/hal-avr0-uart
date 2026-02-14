@@ -372,7 +372,7 @@
     #include <stdio.h>
     #include <avr/io.h>
     
-    #include "../common/enums/UART_enums.h"
+    #include "../../common/enums/UART_enums.h"
 
     void uart_init(void);
     void uart_disable(void);
