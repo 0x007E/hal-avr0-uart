@@ -141,24 +141,6 @@
         #define UART_RX_PIN PIN3_bm
     #endif
 
-    #ifndef UART_ALTERNATE_PORT
-        /**
-         * @def UART_ALTERNATE_PORT
-         * @brief Selects UART port multiplexing/routing option.
-         *
-         * @details
-         * Configures the physical pin location of UART TX/RX signals via PORTMUX:
-         * - `PORTMUX_USART0_DEFAULT_gc`: Default pin mapping (standard location)
-         * - `PORTMUX_USART0_ALTERNATE_gc`: Alternate pin mapping
-         *
-         * This macro controls the hardware routing of USART0 signals to different port pins. The selected PORTMUX value determines which physical pins carry TXD0 and RXD0 signals, independent of UART_PORT/UART_TX_PIN settings.
-         *
-         * @note 
-         * Override before including uart.h to select desired pin location. Consult MCU datasheet for exact pin mappings of each PORTMUX option. UART_PORT may need adjustment to match selected pinmux.
-         */
-        #define UART_ALTERNATE_PORT PORTMUX_USART0_DEFAULT_gc
-    #endif
-
     #ifndef UART_DATASIZE
         /**
          * @def UART_DATASIZE

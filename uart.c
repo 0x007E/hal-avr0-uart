@@ -58,7 +58,7 @@
  */
 void uart_init(void)
 {
-#ifdef TWI_PORTMUX
+#ifdef UART_PORTMUX
 	#if !defined(__AVR_ATtiny202__) && !defined(__AVR_ATtiny402__)
 	
 		PORTMUX.CTRLB &= ~PORTMUX_USART0_bm;
@@ -140,7 +140,7 @@ void uart_disable(void)
     UART_HANDSHAKE_PORT.DIRCLR = UART_HANDSHAKE_RTS_PIN | UART_HANDSHAKE_CTS_PIN;
 #endif
 
-#ifdef TWI_PORTMUX
+#ifdef UART_PORTMUX
 	#if !defined(__AVR_ATtiny202__) && !defined(__AVR_ATtiny402__)
 
 		PORTMUX.CTRLB &= ~PORTMUX_USART0_bm;
