@@ -1,0 +1,91 @@
+name: Release Pipeline
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  OUTPUT_FOLDER: "output"
+  FILENAME: "library"
+
+jobs:
+  pack-library:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository for deployment
+        uses: actions/checkout@v7
+
+      - name: Checkout hal-common repository
+        uses: actions/checkout@v7
+        with:
+          repository: 0x007E/hal-common
+          path: hal-common
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Prepare library package
+        run: |
+          mkdir -p ./${{ env.OUTPUT_FOLDER }}/hal/common
+          cp -r ./hal-common/. ./${{ env.OUTPUT_FOLDER }}/hal/common/
+          
+          mkdir -p ./${{ env.OUTPUT_FOLDER }}/hal/avr0/uart
+          cp ./uart.c ./${{ env.OUTPUT_FOLDER }}/hal/avr0/uart/
+          cp ./uart.h ./${{ env.OUTPUT_FOLDER }}/hal/avr0/uart/
+
+          cp -r ./LICENSE  ./${{ env.OUTPUT_FOLDER }}/LICENSE
+          
+      - name: Pack files for upload
+        run: |
+          tar -czvf build.tar.gz ${{ env.OUTPUT_FOLDER }}
+          zip -r build.zip ${{ env.OUTPUT_FOLDER }}
+
+      - name: Upload library package
+        uses: actions/upload-artifact@v7
+        with:
+            name: library-package
+            path: ./${{ env.OUTPUT_FOLDER }}
+            retention-days: 1
+
+  create-release:
+    needs: [pack-library]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Create Release
+        run: |
+          gh release create "${{ github.ref_name }}" \
+            --title "Release ${{ github.ref_name }}" \
+            --notes "Release ${{ github.ref_name }}"
+
+      - name: Download Library Artifacts
+        uses: actions/download-artifact@v4
+        with:
+            name: library-package
+            path: ./artifact/${{ env.FILENAME }}
+    
+      - name: Display structure
+        run: ls -R ./artifact/${{ env.FILENAME }}
+    
+      - name: Create Compressed File
+        run: |
+            cd ./artifact
+            tar -czvf ./${{ env.FILENAME }}.tar.gz ./${{ env.FILENAME }}
+            zip -r ./${{ env.FILENAME }}.zip ./${{ env.FILENAME }}
+            cd ..
+
+      - name: Upload KiCAD Files
+        run: |
+          gh release upload ${{ github.ref_name }} \
+            ./artifact/${{ env.FILENAME }}.tar.gz \
+            ./artifact/${{ env.FILENAME }}.zip
+      
+      - name: Rollback release on failure
+        if: failure()
+        run: |
+          gh release delete "${{ github.ref_name }}" -y --cleanup-tag
+          git push --delete origin "${{ github.ref_name }}" || true
