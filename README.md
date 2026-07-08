@@ -106,6 +106,8 @@ int main(void)
 }
 ```
 
+> To use `floating point` with `printf`/`scanf` on the `avr0` platform, a guide howto configure `Microcip Studio` can be found in this [blog entry](https://0x007e.github.io/microcontroller/2025/09/09/microchip-studio-setup-fp.html).
+
 ## Additional Information
 
 | Type       | Link               | Description              |
