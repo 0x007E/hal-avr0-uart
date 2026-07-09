@@ -35,7 +35,7 @@ The library can be downloaded (`zip` or `tar`), cloned or used as submodule in a
 
 | Type      | File               | Description              |
 |:---------:|:------------------:|:-------------------------|
-| Library   | [zip](https://github.com/0x007E/hal-avr0-uart/releases/latest/download/library.zip) / [tar](https://github.com/0x007E/hal-avr0-uart/releases/latest/download/library.tar.gz) | AVR0 system library |
+| Library   | [zip](https://github.com/0x007E/hal-avr0-uart/releases/latest/download/library.zip) / [tar](https://github.com/0x007E/hal-avr0-uart/releases/latest/download/library.tar.gz) | AVR0 `uart` library |
 
 ### Using with `git clone`
 
