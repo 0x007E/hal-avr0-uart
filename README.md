@@ -1,6 +1,6 @@
 [![Version: 1.0 Release](https://img.shields.io/badge/Version-1.0%20Release-green.svg)](https://github.com/0x007e/hal-avr0-uart) ![Release](https://github.com/0x007e/hal-avr0-uart/actions/workflows/release.yml/badge.svg) [![License GPLv3](https://img.shields.io/badge/License-GPLv3-lightgrey)](https://www.gnu.org/licenses/gpl-3.0.html)
 
-# `hal-avr0-uart` - AVR0 SPI Hardware Abstraction
+# `hal-avr0-uart` - AVR0 UART Hardware Abstraction
 
 The `hal-avr0-uart` is a lightweight `uart` hardware abstraction library for `AVR0` microcontrollers. It provides a clean interface for `uart` initialization and communication while hiding direct register-level interaction from higher software layers. The library is intended for projects that want to separate low-level device startup code from application logic and establish a small, reusable system layer for AVR0 targets.
 
