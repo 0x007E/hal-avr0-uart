@@ -63,7 +63,7 @@ jobs:
             --notes "Release ${{ github.ref_name }}"
 
       - name: Download Library Artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
             name: library-package
             path: ./artifact/${{ env.FILENAME }}
