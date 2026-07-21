@@ -17,7 +17,7 @@
  * 
  * @see uart.h for declarations, configuration macros, and related information.
  * @see uart_enums.h for UART status and error enumerations.
- * @see [https://github.com/0x007e/hal-avr0-mega](https://github.com/0x007e/hal-avr0-mega) "AVR ATmega GitHub Repository"
+ * @see https://github.com/0x007e/hal-avr0-uart "AVR0 UART HAL GitHub Repository"
  */
 
 #include "uart.h"

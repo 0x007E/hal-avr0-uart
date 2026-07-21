@@ -14,7 +14,7 @@
  * 
  * @note This file mostly becomes part of larger projects and subject to the license specified in the repository. For updates and the complete revision history, see the GitHub repository.
  *
- * @see https://github.com/0x007e/hal-avr0-mega "AVR ATmega GitHub Repository"
+ * @see https://github.com/0x007e/hal-avr0-uart "AVR0 UART HAL GitHub Repository"
  */
 
 #ifndef UART_H_
