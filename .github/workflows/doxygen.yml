@@ -37,9 +37,10 @@ jobs:
         run: |
           mkdir -p ./hal/common
           cp -r ./hal-common/. ./hal/common/
+          
           mkdir -p ./hal/avr0/uart
-          cp ./uart.c ./hal/avr0/uart/
-          cp ./uart.h ./hal/avr0/uart/
+          cp -r ./uart.c ./hal/avr0/uart/
+          cp -r ./uart.h ./hal/avr0/uart/
 
       - name: Setup Pages
         id: pages

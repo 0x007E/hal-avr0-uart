@@ -29,15 +29,10 @@ jobs:
           cp -r ./hal-common/. ./${{ env.OUTPUT_FOLDER }}/hal/common/
           
           mkdir -p ./${{ env.OUTPUT_FOLDER }}/hal/avr0/uart
-          cp ./uart.c ./${{ env.OUTPUT_FOLDER }}/hal/avr0/uart/
-          cp ./uart.h ./${{ env.OUTPUT_FOLDER }}/hal/avr0/uart/
+          cp -r ./uart.c ./${{ env.OUTPUT_FOLDER }}/hal/avr0/uart/
+          cp -r ./uart.h ./${{ env.OUTPUT_FOLDER }}/hal/avr0/uart/
 
-          cp -r ./LICENSE  ./${{ env.OUTPUT_FOLDER }}/LICENSE
-          
-      - name: Pack files for upload
-        run: |
-          tar -czvf build.tar.gz ${{ env.OUTPUT_FOLDER }}
-          zip -r build.zip ${{ env.OUTPUT_FOLDER }}
+          cp -r ./LICENSE  ./${{ env.OUTPUT_FOLDER }}/
 
       - name: Upload library package
         uses: actions/upload-artifact@v7
@@ -78,7 +73,7 @@ jobs:
             zip -r ./${{ env.FILENAME }}.zip ./${{ env.FILENAME }}
             cd ..
 
-      - name: Upload KiCAD Files
+      - name: Upload files
         run: |
           gh release upload ${{ github.ref_name }} \
             ./artifact/${{ env.FILENAME }}.tar.gz \
